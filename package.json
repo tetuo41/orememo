@@ -1,0 +1,13 @@
+{
+  "name": "orememo",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node index"
+  },
+  "main": "index.js",
+  "author": "Hiroki Hatsushika",
+  "license": "MIT",
+  "dependencies": {
+    "moment": "^2.18.1"
+  }
+}
