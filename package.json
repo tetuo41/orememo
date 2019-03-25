@@ -2,12 +2,13 @@
   "name": "orememo",
   "version": "1.0.0",
   "scripts": {
-    "start": "node index"
+    "start": "node src/index",
+    "archive": "node src/archive"
   },
   "main": "index.js",
   "author": "Hiroki Hatsushika",
   "license": "MIT",
   "dependencies": {
-    "moment": "^2.18.1"
+    "moment": "^2.22.2"
   }
 }
