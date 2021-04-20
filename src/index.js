@@ -1,38 +1,20 @@
-'use strict'
-
-// module
-const fs = require('fs')
-const moment = require('moment')
-const exec = require('child_process').exec;
-const path = require('path')
-
+const fs = require('fs');
+import dayjs from 'dayjs'
+import { exec } from 'child_process';
+import {
+  ARCHIVEPATH,
+  MEMODIRPATH,
+} from '../setting.js';
+import {
+  mkMemoDir,
+  mkMemoMd,
+} from './memo.js';
 // const
-// const CURRENTPATH = process.cwd()
-const CURRENTPATH = path.dirname(process.argv[1])
-const MEMODIRPATH = CURRENTPATH + '/memo_dir'
-const ARCHIVEPATH = MEMODIRPATH + '/Archive'
-const TODAY = moment().format('YYYYMMDD')
+const TODAY = dayjs().format('YYYYMMDD')
+
 
 const isDir = (filepath) => {
   return fs.existsSync(filepath) && fs.statSync(filepath).isDirectory()
-}
-
-const mkMemoDir = (dirpath) => {
-  fs.mkdir(MEMODIRPATH, (err, stdout, stderr) => {
-    if (err) { console.log(err) }
-    openCode(mkMemoMd(TODAY))
-  })
-}
-
-const mkMemoMd = (file_name) => {
-  let text = '# ' + file_name + ' MEMO'
-  let file_path = MEMODIRPATH + '/' + file_name + '.md'
-  if (!fs.existsSync(file_path)) {
-    fs.writeFile(file_path, text, (err, stdout, stderr) =>{
-      if (err) { console.log(err) }
-    })
-  }
-  return file_path
 }
 
 const openCode = (file) => {
@@ -50,7 +32,7 @@ const openAtom = (file) => {
 const lsFile = (filePath) => {
   exec('ls -l ' + filePath, (err, stdout, stderr) => {
     if (err) { console.log(err); }
-    console.log(stdout)
+    console.info(stdout)
   })
 }
 
@@ -75,7 +57,7 @@ const isOpen = () => {
     if (fs.existsSync(file_name)) {
       openCode(file_name)
     } else {
-      console.log(file_name + ' is no file')
+      console.info(file_name + ' is no file')
       openCode(mkMemoMd(arg))
     }
     return true

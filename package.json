@@ -2,13 +2,19 @@
   "name": "orememo",
   "version": "1.0.0",
   "scripts": {
-    "start": "node src/index",
-    "archive": "node src/archive"
+    "start": "babel-node src/index.js",
+    "archive": "babel-node src/archive"
   },
   "main": "index.js",
   "author": "Hiroki Hatsushika",
   "license": "MIT",
   "dependencies": {
-    "moment": "^2.22.2"
+    "dayjs": "^1.10.4"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.13.14",
+    "@babel/core": "^7.13.15",
+    "@babel/node": "^7.13.13",
+    "@babel/preset-env": "^7.13.15"
   }
 }
